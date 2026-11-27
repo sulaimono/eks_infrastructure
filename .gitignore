@@ -9,3 +9,4 @@ crash.log
 override.tf
 override.tf.json
 *_override.tf
+modules/**/.terraform.lock.hcl

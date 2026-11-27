@@ -1,4 +1,6 @@
 resource "aws_eks_cluster" "this" {
+  # checkov:skip=CKV_AWS_339:Checkov version list lags EKS releases
+  # checkov:skip=CKV_AWS_58:Using EKS default encryption
   name = "${var.project_name}-cluster"
 
   access_config {
@@ -9,6 +11,8 @@ resource "aws_eks_cluster" "this" {
   version  = var.kubernetes_version
 
   bootstrap_self_managed_addons = false
+
+  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   compute_config {
     enabled       = true
